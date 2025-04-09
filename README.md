@@ -1,70 +1,82 @@
-# Getting Started with Create React App
+Restaurant Reservation App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A full-stack web application for managing restaurant reservations. Built with **React** for the frontend, **Node.js + Express** for the backend, and **MySQL** for data storage.
 
-## Available Scripts
+## Features
 
-In the project directory, you can run:
+- Make a reservation by filling a form
+- View all reservations on a separate page
+- Delete or edit existing reservations
+- User-friendly and responsive UI
 
-### `npm start`
+## Tech Stack
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- **Frontend:** React, Axios
+- **Backend:** Node.js, Express
+- **Database:** MySQL
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Screenshots
 
-### `npm test`
+| Reservation Form | Reservation List |
+|------------------|------------------|
+| ![Form](screenshots/form.png) | ![List](screenshots/list.png) |
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Project Structure
 
-### `npm run build`
+restaurant-reservation-app/ ├── backend/ │   ├── index.js │   └── db.js ├── frontend/ │   ├── public/ │   ├── src/ │   │   ├── components/ │   │   │   └── ReservationForm.js │   │   ├── pages/ │   │   │   ├── ReservationFormPage.js │   │   │   └── ReservationListPage.js │   │   └── App.js │   └── package.json
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Setup Instructions
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### 1. Clone the repository
+```bash
+git clone https://github.com/yourusername/restaurant-reservation-app.git
+cd restaurant-reservation-app
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+2. Set up the Backend
 
-### `npm run eject`
+cd backend
+npm install
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+Update your MySQL credentials in db.js
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Create the restaurant database and reservations table:
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+CREATE DATABASE restaurant;
 
-## Learn More
+USE restaurant;
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+CREATE TABLE reservations (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  customerName VARCHAR(255),
+  phoneNumber VARCHAR(20),
+  guests INT,
+  reservationTime DATETIME,
+  createdAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  updatedAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+);
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+Start the server:
 
-### Code Splitting
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+node index.js
 
-### Analyzing the Bundle Size
+3. Set up the Frontend
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+cd ../frontend
+npm install
+npm start
 
-### Making a Progressive Web App
+The app will run at http://localhost:3000
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
 
-### Advanced Configuration
+Usage
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+Navigate to /form to create a new reservation
 
-### Deployment
+Navigate to /reservations to view, delete, or edit reservations
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
 
-### `npm run build` fails to minify
+Contributing
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Pull requests are welcome. For major changes, please open an issue first.
